@@ -49,7 +49,7 @@ exports.postOneQuestion = (request, response) => {
    if(request.body.answerChoicesD.trim() === '') {
        return response.status(400).json({ title: 'Must not be empty' });
    }
-   //creates a new todo object, parsing req.body and adding date()
+   //creates a new question object, parsing req.body
    const newQuestion = {
        pool: request.body.pool,
        img: request.body.img,
