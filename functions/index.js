@@ -2,11 +2,13 @@ const functions = require("firebase-functions");
 const app = require('express')();
 
 const {
-    getAllQuestions
-} = require('./apis/questions')
+    getAllQuestions,
+    postOneQuestion,
+} = require('./apis/functions')
 
 
 app.get('/questions', getAllQuestions);
+app.post('/question', postOneQuestion)
 
 
 
