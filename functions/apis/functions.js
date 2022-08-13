@@ -76,3 +76,36 @@ exports.postOneQuestion = (request, response) => {
            console.error(err);
        });
 };
+
+exports.getOneQuestion = (request, response) => {
+    const document = db.doc(`/questions/${request.params.questionId}`);
+	document
+        .get()
+        .then((doc) => {
+            if (!doc.exists) {
+                return response.status(404).json({ error: 'Question not found' })
+            }
+            // return document.delete();
+            response.json(doc.data());
+        })
+        .catch((err) => {
+            console.error(err);
+            return response.status(500).json({ error: err.code });
+        });
+};      
+exports.deleteQuestion = (request, response) => {
+    const document = db.doc(`/questions/${request.params.questionId}`);
+	document
+        .get()
+        .then((doc) => {
+            if (!doc.exists) {
+                return response.status(404).json({ error: 'Question not found' })
+            }
+            return document.delete();
+            // response.json(doc.data());
+        })
+        .catch((err) => {
+            console.error(err);
+            return response.status(500).json({ error: err.code });
+        });
+};      

@@ -4,10 +4,13 @@ const app = require('express')();
 const {
     getAllQuestions,
     postOneQuestion,
+    getOneQuestion,
+
 } = require('./apis/functions')
 
 
 app.get('/questions', getAllQuestions);
+app.get('/question/:questionId', getOneQuestion)
 app.post('/question', postOneQuestion)
 
 
