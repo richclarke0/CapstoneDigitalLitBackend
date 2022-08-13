@@ -6,13 +6,16 @@ const {
     postOneQuestion,
     getOneQuestion,
     deleteQuestion,
+    editQuestion,
 } = require('./apis/functions')
 
 
 app.get('/questions', getAllQuestions);
-app.get('/question/:questionId', getOneQuestion)
-app.post('/question', postOneQuestion)
-app.delete('/question/:questionId', deleteQuestion)
+app.get('/question/:questionId', getOneQuestion);
+app.post('/question', postOneQuestion);
+app.delete('/question/:questionId', deleteQuestion);
+app.put('/question/:questionId', editQuestion)
+
 
 
 
