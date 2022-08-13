@@ -93,16 +93,21 @@ exports.getOneQuestion = (request, response) => {
             return response.status(500).json({ error: err.code });
         });
 };      
+
 exports.deleteQuestion = (request, response) => {
     const document = db.doc(`/questions/${request.params.questionId}`);
+    let questionText
 	document
         .get()
         .then((doc) => {
             if (!doc.exists) {
-                return response.status(404).json({ error: 'Question not found' })
+                return response.status(404).json({ error: `Question not found: ${request.params.questionId}` })
             }
+            questionText = doc.data().question
             return document.delete();
-            // response.json(doc.data());
+        })
+        .then(() => {
+            response.json({ message: `Delete successful! ${request.params.questionId} : ${questionText}` });
         })
         .catch((err) => {
             console.error(err);
